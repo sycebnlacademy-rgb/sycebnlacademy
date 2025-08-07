@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYCEBNL - Reset Utilisateurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .user-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 SYCEBNL - Gestion des Utilisateurs</h1>
+        
+        <div class="info">
+            <h3>📝 Instructions</h3>
+            <p>Cette page vous permet de réinitialiser les utilisateurs par défaut et de tester la connexion.</p>
+        </div>
+
+        <div class="user-list">
+            <h3>👥 Utilisateurs par défaut</h3>
+            <ul>
+                <li><strong>Admin principal:</strong> pdgcavenro@sycebnl.com / Mercedes22@</li>
+                <li><strong>Admin test:</strong> admin@sycebnl.com / admin123</li>
+                <li><strong>Demo:</strong> demo@sycebnl.com / demo123</li>
+                <li><strong>Premium:</strong> premium@sycebnl.com / premium123</li>
+            </ul>
+        </div>
+
+        <div>
+            <button class="btn" onclick="resetUsers()">🔄 Réinitialiser les utilisateurs</button>
+            <button class="btn btn-danger" onclick="clearAll()">🗑️ Vider le localStorage</button>
+            <button class="btn" onclick="checkUsers()">👀 Vérifier les utilisateurs</button>
+        </div>
+
+        <div id="result"></div>
+
+        <div style="margin-top: 30px;">
+            <h3>🔗 Liens utiles</h3>
+            <p><a href="http://localhost" target="_blank">🌐 Accéder à l'application principale</a></p>
+            <p><a href="http://localhost/login" target="_blank">🔐 Page de connexion</a></p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function resetUsers() {
+            const defaultUsers = [
+                {
+                    id: 'admin-001',
+                    firstName: 'Admin',
+                    lastName: 'SYCEBNL',
+                    email: 'pdgcavenro@sycebnl.com',
+                    password: CryptoJS.SHA256('Mercedes22@').toString(),
+                    isPremium: true,
+                    isAdmin: true,
+                    registrationDate: new Date().toISOString(),
+                    lastLogin: new Date().toISOString()
+                },
+                {
+                    id: 'admin-002',
+                    firstName: 'Admin',
+                    lastName: 'Test',
+                    email: 'admin@sycebnl.com',
+                    password: CryptoJS.SHA256('admin123').toString(),
+                    isPremium: true,
+                    isAdmin: true,
+                    registrationDate: new Date().toISOString(),
+                    lastLogin: new Date().toISOString()
+                },
+                {
+                    id: 'demo-001',
+                    firstName: 'Demo',
+                    lastName: 'User',
+                    email: 'demo@sycebnl.com',
+                    password: CryptoJS.SHA256('demo123').toString(),
+                    isPremium: false,
+                    isAdmin: false,
+                    registrationDate: new Date().toISOString(),
+                    lastLogin: new Date().toISOString()
+                },
+                {
+                    id: 'premium-001',
+                    firstName: 'Premium',
+                    lastName: 'User',
+                    email: 'premium@sycebnl.com',
+                    password: CryptoJS.SHA256('premium123').toString(),
+                    isPremium: true,
+                    isAdmin: false,
+                    registrationDate: new Date().toISOString(),
+                    lastLogin: new Date().toISOString()
+                }
+            ];
+
+            localStorage.setItem('sycebnl_users', JSON.stringify(defaultUsers));
+            localStorage.removeItem('sycebnl_user'); // Déconnecter l'utilisateur actuel
+            
+            document.getElementById('result').innerHTML = '<div class="success">✅ Utilisateurs réinitialisés avec succès!</div>';
+            checkUsers();
+        }
+
+        function clearAll() {
+            localStorage.clear();
+            document.getElementById('result').innerHTML = '<div class="success">✅ localStorage vidé avec succès!</div>';
+        }
+
+        function checkUsers() {
+            const users = JSON.parse(localStorage.getItem('sycebnl_users') || '[]');
+            const currentUser = localStorage.getItem('sycebnl_user');
+            
+            let html = '<div class="user-list">';
+            html += '<h3>📊 État actuel</h3>';
+            html += `<p><strong>Utilisateurs enregistrés:</strong> ${users.length}</p>`;
+            html += `<p><strong>Utilisateur connecté:</strong> ${currentUser ? 'Oui' : 'Non'}</p>`;
+            
+            if (users.length > 0) {
+                html += '<h4>👥 Liste des utilisateurs:</h4><ul>';
+                users.forEach(user => {
+                    html += `<li>${user.email} (Admin: ${user.isAdmin}, Premium: ${user.isPremium})</li>`;
+                });
+                html += '</ul>';
+            }
+            
+            html += '</div>';
+            document.getElementById('result').innerHTML = html;
+        }
+
+        // Vérifier l'état au chargement
+        window.onload = function() {
+            checkUsers();
+        };
+    </script>
+</body>
+</html> 

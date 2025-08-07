@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Application React (Développement)
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - sycebnl-network
+    restart: unless-stopped
+
+  # Serveur PHP pour le formulaire de contact
+  php:
+    image: php:8.2-fpm-alpine
+    volumes:
+      - ./php:/var/www/html
+    environment:
+      - PHP_FPM_USER=www-data
+      - PHP_FPM_GROUP=www-data
+    networks:
+      - sycebnl-network
+    restart: unless-stopped
+    command: >
+      sh -c "
+        apk add --no-cache openssl mbstring &&
+        php-fpm
+      "
+
+networks:
+  sycebnl-network:
+    driver: bridge 

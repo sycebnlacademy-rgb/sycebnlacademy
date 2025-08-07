@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYCEBNL - Test des Fonctionnalités</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .feature-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .feature-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 SYCEBNL - Test des Fonctionnalités</h1>
+        
+        <div class="status info">
+            <h3>📋 Instructions de test</h3>
+            <p>Cette page vous permet de tester toutes les fonctionnalités de téléchargement et de vérifier que le bouton d'activation premium a été supprimé.</p>
+        </div>
+
+        <div class="feature-list">
+            <h3>✅ Fonctionnalités à tester :</h3>
+            <ul>
+                <li><strong>Téléchargement des chapitres</strong> - Bouton "Télécharger le chapitre" dans chaque chapitre</li>
+                <li><strong>Téléchargement des modules</strong> - Bouton "Télécharger le contenu" dans chaque module</li>
+                <li><strong>Téléchargement des certificats</strong> - Bouton "Télécharger le certificat" après formation complète</li>
+                <li><strong>Mode Premium sécurisé</strong> - Bouton d'activation premium supprimé</li>
+            </ul>
+        </div>
+
+        <div class="status success">
+            <h3>🎯 Tests à effectuer :</h3>
+            <ol>
+                <li><strong>Connexion</strong> - Connectez-vous avec un compte utilisateur</li>
+                <li><strong>Test des chapitres</strong> - Allez dans un chapitre et testez le téléchargement</li>
+                <li><strong>Test des modules</strong> - Allez dans un module et testez le téléchargement</li>
+                <li><strong>Test des certificats</strong> - Terminez la formation et testez le certificat</li>
+                <li><strong>Vérification Premium</strong> - Vérifiez que le bouton d'activation est supprimé</li>
+            </ol>
+        </div>
+
+        <div>
+            <a href="http://localhost" class="btn">🌐 Accéder à l'application principale</a>
+            <a href="http://localhost/login" class="btn btn-success">🔐 Page de connexion</a>
+            <a href="http://localhost/modules" class="btn btn-warning">📚 Page des modules</a>
+            <a href="http://localhost/payment" class="btn">💳 Page de paiement (vérifier suppression bouton)</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📊 État des fonctionnalités</h2>
+        
+        <div class="status success">
+            <h4>✅ Fonctionnalités implémentées :</h4>
+            <ul>
+                <li><strong>Bouton d'activation premium supprimé</strong> - Les utilisateurs ne peuvent plus s'activer eux-mêmes</li>
+                <li><strong>Téléchargement PDF des chapitres</strong> - Fonctionnel avec jsPDF + html2canvas</li>
+                <li><strong>Téléchargement PDF des modules</strong> - Fonctionnel avec résumé complet</li>
+                <li><strong>Téléchargement PDF des certificats</strong> - Fonctionnel après formation complète</li>
+                <li><strong>Gestion d'état avec loading</strong> - Spinner pendant la génération</li>
+                <li><strong>Gestion d'erreurs</strong> - Toast notifications pour les erreurs</li>
+                <li><strong>Nommage automatique des fichiers</strong> - Format : [Type]_[Titre]_[Nom]_[Prénom].pdf</li>
+            </ul>
+        </div>
+
+        <div class="status info">
+            <h4>🔧 Fonctionnalités techniques :</h4>
+            <ul>
+                <li><strong>jsPDF</strong> - Génération de PDF côté client</li>
+                <li><strong>html2canvas</strong> - Conversion HTML vers image</li>
+                <li><strong>Formatage automatique</strong> - Mise en page professionnelle</li>
+                <li><strong>Compression</strong> - Optimisation des fichiers PDF</li>
+                <li><strong>Sécurité</strong> - Mode premium contrôlé par les admins</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🧪 Test des téléchargements</h2>
+        
+        <div class="feature-list">
+            <h4>📝 Test des chapitres :</h4>
+            <ol>
+                <li>Connectez-vous à l'application</li>
+                <li>Allez dans un module (ex: Module 1)</li>
+                <li>Cliquez sur un chapitre</li>
+                <li>Cliquez sur "Télécharger le chapitre"</li>
+                <li>Vérifiez que le PDF se télécharge avec le contenu</li>
+            </ol>
+        </div>
+
+        <div class="feature-list">
+            <h4>📚 Test des modules :</h4>
+            <ol>
+                <li>Allez dans un module</li>
+                <li>Cliquez sur "Télécharger le contenu"</li>
+                <li>Vérifiez que le PDF contient le résumé du module</li>
+            </ol>
+        </div>
+
+        <div class="feature-list">
+            <h4>🏆 Test des certificats :</h4>
+            <ol>
+                <li>Terminez tous les modules (ou simulez la completion)</li>
+                <li>Allez sur la page certificat</li>
+                <li>Cliquez sur "Télécharger le certificat"</li>
+                <li>Vérifiez que le certificat PDF se télécharge</li>
+            </ol>
+        </div>
+
+        <div class="feature-list">
+            <h4>🔒 Test du mode Premium :</h4>
+            <ol>
+                <li>Allez sur la page de paiement</li>
+                <li>Vérifiez que le bouton "Activer Premium (Démo)" n'existe plus</li>
+                <li>Vérifiez que seul le bouton "Demander l'approbation admin" est présent</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📋 Checklist de vérification</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <h4>✅ À vérifier :</h4>
+                <ul>
+                    <li>❏ Bouton d'activation premium supprimé</li>
+                    <li>❏ Téléchargement chapitres fonctionnel</li>
+                    <li>❏ Téléchargement modules fonctionnel</li>
+                    <li>❏ Téléchargement certificats fonctionnel</li>
+                    <li>❏ Loading spinner pendant génération</li>
+                    <li>❏ Messages d'erreur appropriés</li>
+                    <li>❏ Noms de fichiers corrects</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>🔧 Fonctionnalités techniques :</h4>
+                <ul>
+                    <li>❏ jsPDF installé et fonctionnel</li>
+                    <li>❏ html2canvas installé et fonctionnel</li>
+                    <li>❏ Gestion d'état avec useState</li>
+                    <li>❏ Toast notifications</li>
+                    <li>❏ Formatage HTML vers PDF</li>
+                    <li>❏ Sécurité mode premium</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test automatique des dépendances
+        console.log('🧪 Test des fonctionnalités SYCEBNL...');
+        
+        // Vérifier si les dépendances sont disponibles
+        const checkDependencies = () => {
+            const dependencies = {
+                'jsPDF': typeof jsPDF !== 'undefined',
+                'html2canvas': typeof html2canvas !== 'undefined',
+                'localStorage': typeof localStorage !== 'undefined'
+            };
+            
+            console.log('📦 Dépendances disponibles:', dependencies);
+            return dependencies;
+        };
+        
+        // Vérifier l'état du localStorage
+        const checkLocalStorage = () => {
+            const users = localStorage.getItem('sycebnl_users');
+            const currentUser = localStorage.getItem('sycebnl_user');
+            
+            console.log('👥 Utilisateurs:', users ? JSON.parse(users).length : 0);
+            console.log('🔐 Utilisateur connecté:', currentUser ? 'Oui' : 'Non');
+        };
+        
+        // Exécuter les tests
+        window.onload = function() {
+            console.log('🚀 Démarrage des tests...');
+            checkDependencies();
+            checkLocalStorage();
+        };
+    </script>
+</body>
+</html> 
