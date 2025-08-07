@@ -32,7 +32,7 @@ Votre projet est déjà configuré avec :
    - **Name** : `sycebnl-react-platform`
    - **Repository** : Connectez votre repository GitHub
    - **Branch** : `main` (ou votre branche principale)
-   - **Build Command** : `npm install && npm run build`
+   - **Build Command** : `pnpm install && pnpm run build`
    - **Publish Directory** : `dist`
 
 4. **Variables d'environnement (optionnel)**
@@ -99,9 +99,10 @@ Après le déploiement, vérifiez :
 ### Erreurs courantes
 
 #### Build échoue
-- Vérifiez que `npm install` fonctionne localement
+- Vérifiez que `pnpm install` fonctionne localement
 - Vérifiez les dépendances dans `package.json`
 - Consultez les logs de build dans Render
+- **Erreur "Cannot read properties of null"** : Assurez-vous d'utiliser `pnpm` au lieu de `npm` dans la commande de build
 
 #### Routage ne fonctionne pas
 - Vérifiez que le fichier `public/_redirects` est présent
